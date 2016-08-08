@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">AutoInstall</string>
+
+
+    <string name="btn_accessibility_allow_once">仅允许一次</string>
+    <string name="btn_accessibility_complete">完成</string>
+    <string name="btn_accessibility_delete">删除</string>
+    <string name="btn_accessibility_deleted">已删除</string>
+    <string name="btn_accessibility_done">完成</string>
+    <string name="btn_accessibility_install">安装</string>
+    <string name="btn_accessibility_know">我知道了</string>
+    <string name="btn_accessibility_next">下一步</string>
+    <string name="btn_accessibility_ok">确定</string>
+    <string name="btn_accessibility_open">打开</string>
+    <string name="btn_accessibility_run">运行</string>
+    <string name="btn_accessibility_uninstall">卸载</string>
+    <string name="btn_accessibility_update">更新</string>
+    <string name="btn_installation_all">全选</string>
+    <string name="btn_installation_noall">全不选</string>
+    <string name="btn_installation_open">打开</string>
+
+    <string name="str_accessibility_error">解析错误</string>
+
+    <string name="str_accessibility_uninstalled">卸载完成</string>
+    <string name="str_accessibility_uninstalled2">卸载完成</string>
+    <string name="str_accessibility_uninstalled3">卸载完成</string>
+
+    <string name="str_accessibility_installed">安装完成</string>
+    <string name="str_accessibility_installed2">已安装</string>
+    <string name="str_accessibility_installed3">安装成功</string>
+    <string name="str_accessibility_uninstall">要卸载此应用吗</string>
+
+    <string name="str_accessibility_install_blocked">应用安全提醒</string>
+
+    <string name="description_auto_install_accessibility_service">"可以帮助您快速安装应用，一键即达！"\n 开启后请返回到本应中"</string>
+</resources>

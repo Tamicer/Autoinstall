@@ -19,6 +19,9 @@ import android.os.Environment;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**  Created by liyongkui on 15/9/13.*/
 public class MainActivity extends Activity {
@@ -33,7 +36,7 @@ public class MainActivity extends Activity {
     /** WaitView */
     private TamcWaitingView wait = null;
     /** target apk name */
-    private String apkName = "test.apk";
+    private String apkName = "UCBrowser.apk";
 
 
 
@@ -71,8 +74,9 @@ public class MainActivity extends Activity {
                     return;
                 }
                 TamicInstallService.setInvokeType(TamicInstallService.TYPE_INSTALL_APP);
-                TamicWindowManager.makeWatingWiew(MainActivity.this, "安装中...").show();
+
                 installApk();
+
 
             }
         });
@@ -117,21 +121,48 @@ public class MainActivity extends Activity {
     private void installApk() {
         isInstall = true;
         String path = Environment.getExternalStorageDirectory().getPath() + "";
+       // File localApkFile = /*new File(path + File.separator  + apkName);*/
+
+        boolean isCopy = copyApkFromAssets(this, apkName, path + File.separator  + apkName);
+
         File localApkFile = new File(path + File.separator  + apkName);
 
-        if (!localApkFile.exists()) {
-
-            TamicWindowManager.makeWatingWiew(MainActivity.this, "Loading").cancel();
+        if ( !isCopy &&!localApkFile.exists()) {
             Toast.makeText(MainActivity.this, "apk file is not exists!", Toast.LENGTH_SHORT).show();
+            //TamicWindowManager.makeWatingWiew(MainActivity.this, "Loading").cancel();
+
            // throw new RuntimeException("file is not exists!");
             return;
         }
 
+        TamicWindowManager.makeWatingWiew(MainActivity.this, "安装中...").show();
+
         Intent intent = new Intent();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(localApkFile), "application/vnd.android.package-archive");
+        intent.setDataAndType(Uri.fromFile( localApkFile), "application/vnd.android.package-archive");
         startActivity(intent);
+    }
+
+    public boolean copyApkFromAssets(Context context, String fileName, String path) {
+        boolean copyIsFinish = false;
+        try {
+            InputStream is = context.getAssets().open(fileName);
+            File file = new File(path);
+            file.createNewFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            byte[] temp = new byte[1024];
+            int i = 0;
+            while ((i = is.read(temp)) > 0) {
+                fos.write(temp, 0, i);
+            }
+            fos.close();
+            is.close();
+            copyIsFinish = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return copyIsFinish;
     }
 
 

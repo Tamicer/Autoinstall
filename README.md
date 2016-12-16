@@ -7,7 +7,7 @@
 
 #注意：
 
-首次运行，请在sdk的目录下，置放一个test.apk的文件，来模拟要安装的应用！
+首次运行，将assets下的UCBrowser.ap copy到sdk的目录下，置放一个UCBrowser.apk的文件，来模拟要安装的应用！
 
 # 效果
 
